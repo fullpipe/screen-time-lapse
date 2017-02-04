@@ -2,6 +2,135 @@
 	"version": 0,
 	"dependencies": [
 		{
+			"importpath": "github.com/BurntSushi/xgb",
+			"repository": "https://github.com/BurntSushi/xgb",
+			"vcs": "git",
+			"revision": "27f122750802c950b2c869a5b63dafcf590ced95",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/VividCortex/godaemon",
+			"repository": "https://github.com/VividCortex/godaemon",
+			"vcs": "git",
+			"revision": "3d9f6e0b234fe7d17448b345b2e14ac05814a758",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/getlantern/context",
+			"repository": "https://github.com/getlantern/context",
+			"vcs": "git",
+			"revision": "624d99b1798d7c5375ea1d3ca4c5b04d58f7c775",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/getlantern/errors",
+			"repository": "https://github.com/getlantern/errors",
+			"vcs": "git",
+			"revision": "99fa440517e8f3d1e4cd8d6dbed6b41f4c1ed3d6",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/getlantern/filepersist",
+			"repository": "https://github.com/getlantern/filepersist",
+			"vcs": "git",
+			"revision": "c5f0cd24e7991579ba6f5f1bd20a1ad2c9f06cd4",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/getlantern/golog",
+			"repository": "https://github.com/getlantern/golog",
+			"vcs": "git",
+			"revision": "e69a4a00c012e476efd814128cdcd4e04e641dc7",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/getlantern/hex",
+			"repository": "https://github.com/getlantern/hex",
+			"vcs": "git",
+			"revision": "083fba3033ad473db3dd31c9bb368473d37581a7",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/getlantern/hidden",
+			"repository": "https://github.com/getlantern/hidden",
+			"vcs": "git",
+			"revision": "d52a649ab33af200943bb599898dbdcfdbc94cb7",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/getlantern/ops",
+			"repository": "https://github.com/getlantern/ops",
+			"vcs": "git",
+			"revision": "b70875f5d689a9438bca72aefd7142a2af889b18",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/getlantern/stack",
+			"repository": "https://github.com/getlantern/stack",
+			"vcs": "git",
+			"revision": "02f928aad224fbccd50d66edd776fc9d1e9f2f2b",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/getlantern/systray",
+			"repository": "https://github.com/getlantern/systray",
+			"vcs": "git",
+			"revision": "cdae0bdf2aeae3ffb5ffe0cd2e2f83443ca9d104",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/kardianos/osext",
+			"repository": "https://github.com/kardianos/osext",
+			"vcs": "git",
+			"revision": "c2c54e542fb797ad986b31721e1baedf214ca413",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/oxtoacart/bpool",
+			"repository": "https://github.com/oxtoacart/bpool",
+			"vcs": "git",
+			"revision": "4e1c5567d7c2dd59fa4c7c83d34c2f3528b025d6",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/sevlyar/go-daemon",
+			"repository": "https://github.com/sevlyar/go-daemon",
+			"vcs": "git",
+			"revision": "8577c7ddef908e104dae56c9e46f0956cb33c844",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/skratchdot/open-golang/open",
+			"repository": "https://github.com/skratchdot/open-golang",
+			"vcs": "git",
+			"revision": "75fb7ed4208cf72d323d7d02fd1a5964a7a9073c",
+			"branch": "master",
+			"path": "/open",
+			"notests": true
+		},
+		{
+			"importpath": "github.com/vova616/screenshot",
+			"repository": "https://github.com/vova616/screenshot",
+			"vcs": "git",
+			"revision": "078a68cd574545eb3a1d713f5b02a61cc6c42128",
+			"branch": "master",
+			"notests": true
+		},
+		{
 			"importpath": "github.com/wadey/gocovmerge",
 			"repository": "https://github.com/wadey/gocovmerge",
 			"vcs": "git",
