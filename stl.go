@@ -1,9 +1,13 @@
 package main
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
+	"image"
+	"image/gif"
 	"image/png"
+	"log"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -17,8 +21,15 @@ import (
 
 var shotTimeout float64
 var savePath string
+var gifFramerate = flag.Int("gif", 0, "convert images to gif with framerate")
 
 func main() {
+	flag.Usage = func() {
+		fmt.Printf("Usage of %s:\n", os.Args[0])
+		fmt.Printf("  screen-time-lapse [-gif 30] TIMEOUT SAVEPATH\n")
+		flag.PrintDefaults()
+	}
+
 	flag.Parse()
 
 	var err error
@@ -34,7 +45,7 @@ func main() {
 		panic(err)
 	}
 
-	err = os.MkdirAll(savePath, 0777)
+	err = os.MkdirAll(savePath, 0755)
 	if err != nil {
 		panic(err)
 	}
@@ -82,6 +93,9 @@ func onReady() {
 		for {
 			if quit {
 				time.Sleep(time.Millisecond * 100) //wait makeScreenshot completition
+				if *gifFramerate > 0 {
+					go generateGif(counter)
+				}
 				return
 			}
 
@@ -125,4 +139,44 @@ func makeScreenshot(imagePath string) {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func generateGif(num int) {
+	var frames []*image.Paletted
+
+	for i := 0; i < num; i++ {
+		pngPath := fmt.Sprintf("%s/%d.png", savePath, i)
+		f, _ := os.Open(pngPath)
+		img, _ := png.Decode(f)
+
+		buf := bytes.Buffer{}
+		if err := gif.Encode(&buf, img, nil); err != nil {
+			log.Printf("Skipping file %s due to error in gif encoding:%s", pngPath, err)
+			continue
+		}
+
+		tmpimg, err := gif.Decode(&buf)
+		if err != nil {
+			log.Printf("Skipping file %s due to weird error reading the temporary gif :%s", pngPath, err)
+			continue
+		}
+
+		frames = append(frames, tmpimg.(*image.Paletted))
+	}
+
+	delays := make([]int, len(frames))
+	for j := range delays {
+		delays[j] = 1 / *gifFramerate * 100
+	}
+
+	opfile, err := os.Create(fmt.Sprintf("%s/out.gif", savePath))
+	if err != nil {
+		log.Fatalf("Error creating the destination file %s : %s", savePath, err)
+	}
+
+	if err := gif.EncodeAll(opfile, &gif.GIF{Image: frames, Delay: delays, LoopCount: 0}); err != nil {
+		log.Printf("Error encoding output into animated gif: %s", err)
+	}
+
+	opfile.Close()
 }

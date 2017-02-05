@@ -16,4 +16,6 @@ screen-time-lapse 1 ./today
 ### Todo
 * make it work not only in unix systems
 * add image sequence to video converter
-* add image sequence to gif converter
+
+### Credits
+[goanigiffy](https://github.com/srinathh/goanigiffy)
