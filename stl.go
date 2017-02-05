@@ -81,6 +81,7 @@ func onReady() {
 		counter := 0
 		for {
 			if quit {
+				time.Sleep(time.Millisecond * 100) //wait makeScreenshot completition
 				return
 			}
 
