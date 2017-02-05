@@ -9,7 +9,7 @@ cd screen-time-lapse && make && sudo cp ./bin/screen-time-lapse /usr/local/bin/
 ## Usage
 Make a screenshot every second and save to `./today` directory.
 ```
-screen-time-lapse 1 ./today
+screen-time-lapse -every 5 -to ./today
 ```
 ![systray](systray.png)
 

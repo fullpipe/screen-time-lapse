@@ -10,7 +10,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"strconv"
 	"time"
 
 	"github.com/VividCortex/godaemon"
@@ -21,29 +20,24 @@ import (
 
 var shotTimeout float64
 var savePath string
-var gifFramerate = flag.Int("gif", 0, "convert images to gif with framerate")
+var gifFramerate int
 
 func main() {
 	flag.Usage = func() {
 		fmt.Printf("Usage of %s:\n", os.Args[0])
-		fmt.Printf("  screen-time-lapse [-gif 30] TIMEOUT SAVEPATH\n")
+		fmt.Printf("   screen-time-lapse -every 5 -to ./today [-gif 30]\n\n")
 		flag.PrintDefaults()
 	}
 
+	flag.Float64Var(&shotTimeout, "every", 5, "every `seconds`")
+	flag.StringVar(&savePath, "to", "./", "save images to `path`")
+	flag.IntVar(&gifFramerate, "gif", 0, "convert images to gif with `framerate`")
 	flag.Parse()
-
-	var err error
-	shotTimeout, err = strconv.ParseFloat(flag.Arg(0), 64)
-	if err != nil {
-		panic(err)
-	}
 
 	shotTimeout = shotTimeout * 1000 //convert to milliseconds
 
-	savePath, err = filepath.Abs(flag.Arg(1))
-	if err != nil {
-		panic(err)
-	}
+	var err error
+	savePath, err = filepath.Abs(savePath)
 
 	err = os.MkdirAll(savePath, 0755)
 	if err != nil {
@@ -93,7 +87,7 @@ func onReady() {
 		for {
 			if quit {
 				time.Sleep(time.Millisecond * 100) //wait makeScreenshot completition
-				if *gifFramerate > 0 {
+				if gifFramerate > 0 {
 					go generateGif(counter)
 				}
 				return
@@ -166,7 +160,7 @@ func generateGif(num int) {
 
 	delays := make([]int, len(frames))
 	for j := range delays {
-		delays[j] = 1 / *gifFramerate * 100
+		delays[j] = 1 / gifFramerate * 100
 	}
 
 	opfile, err := os.Create(fmt.Sprintf("%s/out.gif", savePath))
