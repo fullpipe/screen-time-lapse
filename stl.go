@@ -116,6 +116,7 @@ func makeScreenshot(imagePath string) {
 	println(imagePath)
 
 	f, err := os.Create(imagePath)
+	defer f.Close()
 	if err != nil {
 		panic(err)
 	}
@@ -124,5 +125,4 @@ func makeScreenshot(imagePath string) {
 	if err != nil {
 		panic(err)
 	}
-	f.Close()
 }
