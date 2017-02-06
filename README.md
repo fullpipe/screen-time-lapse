@@ -11,7 +11,10 @@ Make a screenshot every 5 seconds and save to `./today` directory.
 ```
 screen-time-lapse -every 5 -to ./today
 ```
-![systray](systray.png)
+![systray](assets/systray.png)
+
+## My workday example
+![workday](assets/workday.gif)
 
 ### Todo
 * make it work not only in unix systems
